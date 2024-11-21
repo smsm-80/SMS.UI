@@ -1,0 +1,107 @@
+<form [formGroup]="addDriverForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-title>Add Driver</mat-card-title>
+      <mat-card-content>
+        <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>ID Card No</mat-label>
+            <input matInput formControlName="IDCardNo" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="FullName" required />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Code</mat-label>
+            <input matInput formControlName="Code" required />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>License Number</mat-label>
+            <input matInput formControlName="LicenseNumber" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>License Expiry Date</mat-label>
+            <input matInput formControlName="LicenseExpiryDate" [matDatepicker]="picker1" />
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Contact Number</mat-label>
+            <input matInput formControlName="ContactNumber" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <textarea matInput formControlName="Address"></textarea>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Emergency Contact</mat-label>
+            <input matInput formControlName="EmergencyContact" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <input matInput formControlName="Status" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Hire Date</mat-label>
+            <input matInput formControlName="HireDate" [matDatepicker]="picker2" />
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Vehicle ID</mat-label>
+            <input matInput formControlName="VehicleID" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Payment Type</mat-label>
+            <mat-select formControlName="PaymentTypeCode" required>
+              <mat-option *ngFor="let type of paymentTypes" [value]="type.code">
+                {{ type.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Driver Type</mat-label>
+            <mat-select formControlName="DriverTypeCode" required>
+              <mat-option *ngFor="let type of driverTypes" [value]="type.code">
+                {{ type.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Monthly Salary</mat-label>
+            <input matInput formControlName="MonthlySalary" type="number" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Fixed Monthly Amount</mat-label>
+            <input matInput formControlName="FixedMonthlyAmount" type="number" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Per Trip Rate</mat-label>
+            <input matInput formControlName="PerTripRate" type="number" />
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="addDriverForm.invalid">Save</button>
+        <button mat-button type="button" (click)="addDriverForm.reset()">Reset</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

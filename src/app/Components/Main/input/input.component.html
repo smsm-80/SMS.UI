@@ -1,0 +1,17 @@
+<div class="form-group">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <input 
+      matInput
+      [type]="type" 
+      [placeholder]="placeholder" 
+      [ngModel]="value" 
+      (ngModelChange)="onInputChange($event)" 
+      [disabled]="disabled"
+      required 
+    />
+    
+    <mat-hint></mat-hint>
+    
+  </mat-form-field>
+</div>

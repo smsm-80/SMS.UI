@@ -1,1 +1,274 @@
-/* You can add global styles to this file, and also import other style files */
+.inputs .Input-Controller input[type="file"] {
+    cursor: pointer;
+    color: #707070;
+  }
+  
+  .inputs .Input-Controller input[type="file"]::-webkit-file-upload-button {
+    color: #2C698D;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    margin-inline-end: 75px;
+  }
+  
+  .inputs .Input-Controller.file button {
+    margin-inline-start: 20px;
+  }
+  
+  .Input-Controller {
+    margin: 15px 0;
+    position: relative;
+  }
+  
+  .Input-Controller label {
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .Input-Controller a {
+    color: #4F86F7 !important;
+  }
+  
+  .Input-Controller>input[type=text],
+  .controls>input[type=text],
+  .Input-Controller .icon-input>input[type=text],
+  .Input-Controller select,
+  .Input-Controller .dropdown-toggle {
+    width: 100%;
+    color: #000;
+    padding: 7px;
+    border: 1px solid #C6C6C6;
+    outline: none;
+    border-radius: 5px;
+    background-color: var(--input-color);
+    outline-color: transparent;
+  }
+  
+  .Input-Controller {
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start !important;
+    align-self: flex-end;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .Input-Controller input:not([type="radio"]):not([type="checkbox"]),
+  .Input-Controller textarea,
+  .Input-Controller .icon-input>input,
+  select,
+  .Input-Controller .dropdown-toggle {
+    flex: 3;
+    color: var(--secondary-color);
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #c6c6c6;
+    outline: none;
+    border-radius: 8px;
+    outline-color: transparent;
+  }
+  
+
+  .Input-Controller .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .Input-Controller .dual-inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .Input-Controller .dual-inputs input {
+    flex: 1;
+  }
+  
+  .Input-Controller>label {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .Input-Controller .icon-input {
+    position: relative;
+    width: 100%;
+  }
+  
+  .Input-Controller .icon-input .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  .Input-Controller .radio-container .radio {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  html[dir="ltr"] .Input-Controller .icon-input .icon {
+    left: unset;
+    right: 10px;
+  }
+  
+  .Input-Controller .icon-input .icon a {
+    color: #999999;
+  }
+  
+  .Input-Controller .success {
+    background-color: #09f911;
+    width: 50%;
+    margin-top: 10px;
+    padding: 0 10px;
+    border-radius: 10px;
+  }
+  
+  .Input-Controller .select2 {
+    width: 100% !important;
+  }
+  
+  .Input-Controller .two-inputs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .Multi-Controller {
+    width: 100%;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 30px;
+    justify-items: center;
+  }
+  
+  .Multi-Card {
+    width: 100%;
+    margin-bottom: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 30px;
+    justify-items: center;
+  }
+
+  .Double-Controller {
+    width: 100%;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 25px;
+  }
+  
+  .Triple-Controller {
+    width: 100%;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 30px;
+  }
+  
+  .Six-Controller {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px 25px;
+  }
+  
+  .Thirds-Controller {
+    width: 100%;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 4fr 13fr;
+    gap: 10px 25px;
+  }
+  
+  .Full-Controller {
+    width: 100%;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px 0;
+  }
+  
+  .Multi-Controller .buttons-container {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: stretch;
+    align-items: flex-end;
+  }
+  
+  .Multi-Controller .span1 {
+    width: initial !important;
+    grid-column: span 1 !important;
+  }
+  
+  /* Similar span definitions for Multi-Controller */
+  
+  .Tree-Controller .Multi-Controller {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 30px;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .Multi-Controller,
+    .Triple-Controller {
+      gap: 10px 20px;
+    }
+  
+    .operations-box .main-inputs {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 920px) {
+    .Multi-Controller,
+    .files {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .operations-box .small-inputs {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 700px) {
+    .Multi-Controller,
+    .Triple-Controller {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .Tree-Controller .Multi-Controller {
+      gap: 10px 50px;
+    }
+  
+    .Thirds-Controller {
+      gap: 10px;
+    }
+  }
+  
+  @media screen and (max-width: 520px) {
+    .Multi-Controller,
+    .Tree-Controller .Multi-Controller,
+    .Triple-Controller,
+    .files,
+    .Double-Controller {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
