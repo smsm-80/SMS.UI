@@ -15,7 +15,7 @@ export class SysSystemService {
   constructor(private apiCaller: ApiCallerService) {}
 
   GetAllSysSystems(): Observable<SysSystem[]> {
-    return this.apiCaller.makeRequest<SysSystem[]>(
+    return this.apiCaller.makeRequest<ApiResponse<SysSystem[]>>(
       HttpMethod.GET,
       '/SysSystem/GetAll',
       null,

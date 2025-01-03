@@ -43,6 +43,16 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./Screens/DriverMgmt/Driver/add-driver/add-driver.component').then((C) => C.AddDriverComponent),
   },
+  {
+    path: 'DriverMgmt/DriverList',
+    loadComponent: () =>
+      import('./Screens/DriverMgmt/Driver/driver-list/driver-list.component').then((C) => C.DriverListComponent),
+  },
+  {
+    path: 'DriverMgmt/EditDriver/:id', 
+    loadComponent: () =>
+      import('./Screens/DriverMgmt/Driver/edit-driver/edit-driver.component').then((C) => C.EditDriverComponent),
+  }
 
   
 ];

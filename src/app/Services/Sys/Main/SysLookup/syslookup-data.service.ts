@@ -3,9 +3,8 @@ import { ApiCallerService } from '../../../Shared/api-caller.service';
 import { HttpMethod } from '../../../../shared/HttpMethod';
 import { Observable, of } from 'rxjs';  // Import 'of' here
 import { catchError, map } from 'rxjs/operators';
-import { ApiResponse } from '../../../../Modules/Helpers/ApiResponse';
+import { ApiResponse,PaginationApiResponse,PaginationModel } from '../../../../Modules/Helpers/ApiResponse';
 import { SyslookupDataDto, SyslookupDataSearchDto } from '../../../../Modules/Sys/Main/SyslookupData';
-import { PaginationModel } from '../../../../Modules/Common/PaginationModel';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +26,7 @@ export class SyslookupDataService {
   // Get all SyslookupData with filters
   getAllSyslookupData(syslookupDataSearchDto: SyslookupDataSearchDto) {
     return this.apiCaller
-      .makeRequest<ApiResponse<PaginationModel<SyslookupDataDto>>>(
+      .makeRequest<PaginationApiResponse<SyslookupDataDto>>(
         HttpMethod.POST,
         '/SyslookupData/GetAll',
         syslookupDataSearchDto,
@@ -91,16 +90,28 @@ getSyslookupDataByCategoryId(categoryId: number): Observable<SyslookupDataDto[]>
       }
     }),
     catchError((error) => {
-      console.error('Error fetching lookup data', error);
+      console.warn("Error fetching lookup data:" + error.message);
       return of([]);  // Return an empty array in case of error
     })
   );
 }
 
 
+BindListData(DDl:any,CategoryId:number): void {
+  this.GetListData(CategoryId).subscribe({
+    next:  (data) => {
+      DDl.length = 0;
+      DDl.push(...data); // Add the new data to the array; 
+      console.info("BindListData data:" + data.length);
+    },
+    error: (error) => {
+      console.warn("Error loading driver types:" + error.message);
+    }
+  });
+}
 
   // Refactored BindListData method to return an observable of data
-  BindListData(categoryId: number): Observable<any[]> {
+  GetListData(categoryId: number): Observable<any[]> {
     return this.getSyslookupDataByCategoryId(categoryId).pipe(
       map((response) => {
         return response.map((item: SyslookupDataDto) => ({

@@ -28,7 +28,7 @@ export class AuthService {
     };
 
     // Use ApiCallerService to make the request
-    return this.apiCaller.makeRequest<UserInfo>(
+    return this.apiCaller.makeRequest<ApiResponse<UserInfo>>(
       HttpMethod.POST,          // Specify POST method
       '/Auth/Login',            // The endpoint (no need for the full URL)
       loginDto,                 // The request body

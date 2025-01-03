@@ -1,6 +1,6 @@
-<form [formGroup]="addDriverForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="editDriverForm" (ngSubmit)="onSubmit()">
     <mat-card>
-      <mat-card-title>Add Driver</mat-card-title>
+      <mat-card-title>Edit Driver</mat-card-title>
       <mat-card-content>
         <div class="form-group">
           <mat-form-field appearance="fill">
@@ -12,11 +12,6 @@
             <mat-label>Full Name</mat-label>
             <input matInput formControlName="FullName" required />
           </mat-form-field>
-  
-          <!-- <mat-form-field appearance="fill">
-            <mat-label>Code</mat-label>
-            <input matInput formControlName="Code" required />
-          </mat-form-field> -->
   
           <mat-form-field appearance="fill">
             <mat-label>License Number</mat-label>
@@ -70,8 +65,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          
-          
+  
           <mat-form-field appearance="fill">
             <mat-label>Driver Type</mat-label>
             <mat-select formControlName="DriverTypeCode" required>
@@ -80,27 +74,27 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          
   
           <mat-form-field appearance="fill">
             <mat-label>Monthly Salary</mat-label>
-            <input matInput formControlName="MonthlySalary" type="number" />
+            <input matInput formControlName="MonthlySalary" />
           </mat-form-field>
   
           <mat-form-field appearance="fill">
             <mat-label>Fixed Monthly Amount</mat-label>
-            <input matInput formControlName="FixedMonthlyAmount" type="number" />
+            <input matInput formControlName="FixedMonthlyAmount" />
           </mat-form-field>
   
           <mat-form-field appearance="fill">
             <mat-label>Per Trip Rate</mat-label>
-            <input matInput formControlName="PerTripRate" type="number" />
+            <input matInput formControlName="PerTripRate" />
           </mat-form-field>
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit" [disabled]="addDriverForm.invalid">Save</button>
-        <button mat-button type="button" (click)="addDriverForm.reset()">Reset</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="editDriverForm.invalid">
+          Update Driver
+        </button>
       </mat-card-actions>
     </mat-card>
   </form>

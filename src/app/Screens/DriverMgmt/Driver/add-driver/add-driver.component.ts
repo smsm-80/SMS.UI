@@ -9,7 +9,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule  } from '@angular/common';
 import { SyslookupDataService } from '../../../../Services/Sys/Main/SysLookup/syslookup-data.service';
-import { SyslookupDataSearchDto } from '../../../../Modules/Sys/Main/SyslookupData';
+import { DriverDto } from '../../../../Modules/DriverMgmt/Driver/Driver';
+import { DriverService } from '../../../../Services/DriverMgmt/Drivers/DriverService';
 
 
 @Component({
@@ -26,7 +27,7 @@ import { SyslookupDataSearchDto } from '../../../../Modules/Sys/Main/SyslookupDa
     MatNativeDateModule,
     MatSelectModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
   ],
 })
 export class AddDriverComponent implements AfterViewInit {
@@ -34,14 +35,16 @@ export class AddDriverComponent implements AfterViewInit {
   paymentTypes: any[] = [];
   driverTypes: any[] = [];
 
+
   constructor(
     private fb: FormBuilder,
-    private syslookupDataService: SyslookupDataService
+    private syslookupDataService: SyslookupDataService,
+    private driverService:DriverService
   ) {
     this.addDriverForm = this.fb.group({
       IDCardNo: [''],
       FullName: ['', Validators.required],
-      Code: ['', Validators.required],
+      Code: [null],
       LicenseNumber: [''],
       LicenseExpiryDate: [null],
       ContactNumber: [''],
@@ -61,44 +64,63 @@ export class AddDriverComponent implements AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    this.loadPaymentTypes();
-    this.loadDriverTypes();
-  }
-
-  // Method to load payment types from the API
-  loadPaymentTypes(): void {
-    this.syslookupDataService.BindListData(2).subscribe({
-      next: (data) => {
-        this.paymentTypes = data; // Update paymentTypes with the fetched data
-
-      },
-      error: (error) => {
-        console.error('Error loading payment types', error);
-      }
-    });
-  }
-  
-
-
-
-
-
-  // Method to load driver types from the API
-  loadDriverTypes(): void {
-    this.syslookupDataService.BindListData(1).subscribe({
-      next:  (data) => {
-        this.driverTypes = data; // Update driverTypes with the fetched data
-      },
-      error: (error) => {
-        console.error('Error loading driver types', error);
-      }
-    });
+    console.log('ngAfterViewInit called 1'+this.driverTypes.length);
+    this.syslookupDataService.BindListData(this.driverTypes, 1);
+    console.log('ngAfterViewInit called 2'+this.driverTypes.length);
+    console.log('--------------------------------------------------');
+    console.log('ngAfterViewInit called 3'+this.paymentTypes.length);
+    this.syslookupDataService.BindListData(this.paymentTypes, 2);
+    console.log('ngAfterViewInit called 4'+this.paymentTypes.length);
   }
 
   onSubmit(): void {
     if (this.addDriverForm.valid) {
-      console.log('Form Submitted', this.addDriverForm.value);
-      // Process the form data here, e.g., call an API to save the driver data.
+      // Prepare the form data as a DriverDto
+      const formValue = this.addDriverForm.value;
+
+      // Convert form values to match the server's expected types
+      const driverDto: DriverDto = {
+        ...formValue,
+        Status: parseInt(formValue.Status, 10),
+        VehicleID: parseInt(formValue.VehicleID, 10),
+        PaymentTypeCode: parseInt(formValue.PaymentTypeCode, 10),
+        DriverTypeCode: parseInt(formValue.DriverTypeCode, 10),
+        MonthlySalary: parseFloat(formValue.MonthlySalary),
+        FixedMonthlyAmount: parseFloat(formValue.FixedMonthlyAmount),
+        PerTripRate: parseFloat(formValue.PerTripRate),
+      };
+      
+      // Call the service to create the driver
+      this.driverService.createDriver(driverDto).subscribe({
+        next: (response) => {
+          if (response.succeeded) {
+            // Show success message or handle success action
+            console.log('Driver created successfully:', response.data);
+            alert('Driver created successfully!');
+            this.addDriverForm.reset(); // Reset the form
+          } else {
+            // Handle API response indicating failure
+            console.error('Failed to create driver:', response);
+            alert('Failed to create driver. Please try again.');
+          }
+        },
+        error: (err) => {
+          // Handle network or server errors
+          console.error('Error creating driver:', err);
+          alert('An error occurred while creating the driver. Please try again.');
+        },
+      });
+    } else {
+      // Show validation errors
+      console.log('Form is invalid:', this.addDriverForm.errors);
+      alert('Please fill out the form correctly before submitting.');
     }
   }
+
+
+
+
+
+
+
 }

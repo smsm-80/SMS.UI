@@ -20,7 +20,7 @@ export class ApiCallerService {
     headers?: HttpHeaders,
     useAuth: boolean = false,
     responseType?: string // Optional responseType for special cases
-  ): Observable<ApiResponse<T>> {
+  ): Observable<T> {
     const url = `${environment.apiBaseUrl}${endpoint}`;
 
     // Set up headers with Authorization if needed
@@ -68,14 +68,16 @@ export class ApiCallerService {
         request$ = this.http.delete<T>(url, options);
         break;
       default:
-        throw new Error('Invalid HTTP method');
+        console.warn("Invalid HTTP method");
+        throw new Error('');
     }
 
     // Process response and handle errors
     return request$.pipe(
-      map((response: ApiResponse<T>) => response),
+      map((response: T) => response),
       catchError((error) => {
-        return throwError(() => new Error("ApiCallerService Error :" + error.message));
+        console.warn("ApiCallerService Error :" + error.message);
+        return throwError(() => new Error(""));
       })
     );
   }
