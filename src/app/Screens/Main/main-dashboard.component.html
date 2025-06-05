@@ -1,0 +1,11 @@
+<app-master-dashboard>
+    <app-system-card
+      *ngFor="let system of systems"
+      [description]="system.description || 'No description available'"
+      [systemName]="system.name || 'Unnamed System'"
+      [icon]="system.iconCss || ''"
+      [path]="system.path || '/Main'"
+      >
+    </app-system-card>
+  </app-master-dashboard>
+  

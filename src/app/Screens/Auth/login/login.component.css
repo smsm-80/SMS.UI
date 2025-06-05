@@ -1,0 +1,47 @@
+.login-page {
+    position: relative; /* Set the position to relative */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Full width */
+    overflow: hidden; /* Ensure no overflow from pseudo-element */
+}
+
+.login-page::before {
+    content: ""; /* Required for the pseudo-element */
+    position: absolute; /* Position it absolutely */
+    top: 0; /* Cover the whole area */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../../../assets/images/LoginBackground.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: blur(8px); /* Adjust the blur level here */
+    z-index: 0; /* Place it behind other content */
+}
+
+.login-container {
+    position: relative; /* Ensure this is above the background */
+    z-index: 1; /* Bring the login container above the blurred background */
+    padding: 20px; /* Optional padding for the container */
+    background-color: rgba(255, 255, 255, 0.4); /* Adjust the opacity here for transparency */
+    border-radius: 10px; /* Optional: rounded corners */
+    backdrop-filter: blur(10px); /* Optional: adds a blur effect to the background behind the container */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
+}
+
+
+.full-width {
+    width: 100%; /* Ensure full width for all form fields */
+}
+
+mat-form-field {
+    margin-bottom: 16px; /* Space between form fields */
+}
+
+mat-checkbox {
+    margin-top: 16px; /* Space above checkbox */
+}

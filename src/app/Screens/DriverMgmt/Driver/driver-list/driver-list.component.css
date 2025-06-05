@@ -1,0 +1,247 @@
+
+/* General Container Styles */
+.add-driver-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+.add-driver-container .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-driver-container .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Form Container */
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Fields and Dropdowns */
+mat-form-field {
+  width: 100%;
+}
+
+mat-form-field.appearance-fill, 
+mat-form-field.appearance-outline {
+  background: #f9f9f9;
+}
+
+button[mat-raised-button] {
+  margin-right: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[mat-raised-button]:hover {
+  opacity: 0.9;
+}
+
+button[mat-raised-button]:last-child {
+  margin-right: 0;
+}
+
+/* Table Styles */
+.driver-list {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+mat-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-spacing: 0;
+}
+
+.mat-header-cell, 
+.mat-cell {
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #e0e0e0;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  background-color: #f1f1f1;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.mat-row:hover {
+  background-color: #f0f7ff;
+}
+
+/* Action Buttons */
+button[mat-button] {
+  font-size: 13px;
+  padding: 6px 12px;
+  border: 1px solid #333;
+  background-color: transparent;
+  color: #333;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+button[mat-button]:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Pagination */
+.mat-paginator {
+  margin-top: 20px;
+}
+
+.mat-paginator button {
+  border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  form {
+      grid-template-columns: 1fr;
+  }
+  
+  .add-driver-container {
+      justify-content: center;
+  }
+}
+
+
+
+/* Enhanced Table Styles */
+mat-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-spacing: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden; /* Rounded corners apply to the table content */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  background-color: #e9ecef; /* Light gray for header */
+  color: #333;
+  padding: 12px 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.mat-cell {
+  padding: 12px 10px;
+  font-size: 14px;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+}
+
+.mat-header-row,
+.mat-row {
+  transition: background-color 0.3s ease;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #f8f9fa; /* Light alternate row color */
+}
+
+.mat-row:hover {
+  background-color: #f0f4f8; /* Highlight row on hover */
+}
+
+/* Center Actions Column */
+.mat-cell:last-child, 
+.mat-header-cell:last-child {
+  text-align: center;
+}
+
+/* Action Buttons */
+button[mat-button] {
+  font-size: 12px;
+  padding: 6px 12px;
+  border: none;
+  color: #007bff;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+button[mat-button]:hover {
+  background-color: #f8f9fa;
+  color: #0056b3;
+}
+
+/* Paginator Styling */
+.mat-paginator {
+  background-color: #fff;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.mat-paginator .mat-paginator-range-label {
+  font-size: 12px;
+  color: #555;
+}
+
+.mat-paginator .mat-paginator-icon {
+  color: #007bff;
+}
+
+.mat-paginator button {
+  border-radius: 4px;
+  color: #007bff;
+}
+
+.mat-paginator button:hover {
+  background-color: #f8f9fa;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  mat-table {
+    font-size: 12px; /* Reduce font size for smaller screens */
+  }
+
+  .mat-header-cell, .mat-cell {
+    padding: 8px 5px; /* Reduce padding for smaller screens */
+  }
+}
+
+
+.mat-header-cell {
+  font-weight: bold;
+  text-transform: uppercase; /* Converts text to uppercase */
+  font-size: 14px;
+  background-color: #e9ecef; /* Light gray background */
+  color: #333; /* Dark text for contrast */
+  padding: 12px 10px;
+  border-bottom: 2px solid #ddd; /* Defines the header area */
+  text-align: left;
+}

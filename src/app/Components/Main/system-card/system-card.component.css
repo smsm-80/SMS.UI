@@ -1,0 +1,13 @@
+.system-card-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+}
+
+.system-card {
+    cursor: pointer; /* Show pointer on hover */
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.system-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}

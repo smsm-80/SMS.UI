@@ -1,0 +1,44 @@
+
+<div class="login-page">
+  <div class="login-container">
+    <h2>Login</h2>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput
+               [(ngModel)]="loginData.UserName"
+               (ngModelChange)="onInputChange($event, 'UserName')"
+               placeholder="Enter your username"
+               name="username"
+               #username="ngModel"
+               required />
+        <mat-error *ngIf="username.invalid && username.touched">Username is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput
+               [(ngModel)]="loginData.UserPassword"
+               (ngModelChange)="onInputChange($event, 'UserPassword')"
+               placeholder="Enter your password"
+               name="password"
+               type="password"
+               #password="ngModel"
+               required />
+        <mat-error *ngIf="password.invalid && password.touched">Password is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Language</mat-label>
+        <mat-select [(ngModel)]="loginData.Language" (ngModelChange)="onInputChange($event, 'Language')" name="language" required>
+          <mat-option *ngFor="let type of languageOptions" [value]="type.code">
+            {{ type.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.form.valid">Login</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+
+<div class="add-driver-container">
+    <button (click)="AddDriver()"  class="btn btn-primary">Add Driver</button>
+  </div>
+  
+  <form [formGroup]="filterForm">
+    <mat-form-field appearance="outline"> 
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="fullName" (input)="applyFilters()" placeholder="Search by Full Name">
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>License Number</mat-label>
+      <input matInput formControlName="licenseNumber" (input)="applyFilters()" placeholder="Search by License Number">
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="Status" (selectionChange)="applyFilters()">
+        <mat-option [value]="null">All</mat-option>
+        <mat-option [value]="1">Active</mat-option>
+        <mat-option [value]="0">Inactive</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Hire Date</mat-label>
+      <input matInput formControlName="hireDate" (dateChange)="applyFilters()" [matDatepicker]="picker" placeholder="Hire Date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Payment Type</mat-label>
+      <mat-select formControlName="PaymentTypeCode" required>
+        <mat-option *ngFor="let type of paymentTypes" [value]="type.code">
+          {{ type.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Driver Type</mat-label>
+      <mat-select formControlName="driverTypeCode">
+        <mat-option *ngFor="let type of driverTypes" [value]="type.code">
+          {{ type.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="applyFilters()">Apply Filters</button>
+    <button mat-raised-button (click)="clearFilters()">Clear Filters</button>
+  </form>
+
+  
+<div class="driver-list">
+    <mat-table [dataSource]="drivers" class="mat-elevation-z8">
+      <ng-container matColumnDef="fullName">
+        <mat-header-cell *matHeaderCellDef> Full Name </mat-header-cell>
+        <mat-cell *matCellDef="let driver"> {{ driver.fullName }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef> Driver Code </mat-header-cell>
+        <mat-cell *matCellDef="let driver"> {{ driver.code }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="idCardNo">
+        <mat-header-cell *matHeaderCellDef> ID Card No </mat-header-cell>
+        <mat-cell *matCellDef="let driver"> {{ driver.idCardNo }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let driver">
+          <button mat-button color="primary" (click)="editDriver(driver)">Edit</button>
+          <button mat-button color="warn" (click)="deleteDriver(driver.id)">Delete</button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      
+    </mat-table>
+  
+    <mat-paginator (page)="onPageChange($event)" [length]="rowsCount" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+  </div>
+  
